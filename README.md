@@ -120,12 +120,11 @@ php artisan queue:work --queue=high,default,low
 
 ### All lifecycle events, cart context, and rule version are logged for audit.
 
-##⚡ Notes
+### ⚡ Notes
+- Uses **Redis** for atomic coupon reservations.
+- Jobs are **idempotent**, ensuring retries or repeated execution do not cause inconsistencies.
+- `CouponService` centralizes all business logic.
+- `RuleEngine` handles dynamic validation rules (e.g., min cart value, first-time user, category-based eligibility).
+- **Horizon** is configured for queue monitoring and scaling, but it is **not active on Windows** due to missing PHP extensions (`pcntl`).
+- Queues and jobs still function normally without Horizon.
 
-### Uses Redis for atomic reservations.
-
-### Jobs are idempotent to handle retries and partial failures.
-
-### CouponService centralizes business logic; RuleEngine handles dynamic rules.
-
-### Horizon integration optional; queues work without it.
