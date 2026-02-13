@@ -53,75 +53,43 @@ Designed for reliability, scalability, and auditability, this project demonstrat
 ## 🧩 Project Structure
 
 coupon-processing/
-
+│
 ├── app/
-        ├── Console/
-        ├── Commands/
-                    └── TestCouponFlow.php        # End-to-end automated test command
-        └── Kernel.php                    # Registers Artisan commands
+│   ├── Console/
+│   │   ├── Commands/
+│   │   │   └── TestCouponFlow.php
+│   │   └── Kernel.php
 │   │
 │   ├── Http/
 │   │   └── Controllers/
-│   │       └── ApplyCouponController.php # API endpoint to apply coupon
+│   │       └── ApplyCouponController.php
 │   │
 │   ├── Jobs/
-│   │   ├── ApplyCouponJob.php            # High-priority coupon validation job
-│   │   ├── UpdateCartJob.php             # Default queue cart update
-│   │   └── LogEventJob.php               # Low-priority logging job
+│   │   ├── ApplyCouponJob.php
+│   │   ├── UpdateCartJob.php
+│   │   └── LogEventJob.php
 │   │
 │   ├── Models/
-│   │   ├── Coupon.php                    # Coupon model
-│   │   ├── CouponEvent.php               # Coupon lifecycle logs
-│   │   └── Cart.php                      # Cart model (if applicable)
+│   │   ├── Coupon.php
+│   │   ├── CouponEvent.php
+│   │   └── Cart.php
 │   │
 │   └── Services/
-│       ├── CouponService.php             # Core coupon logic (reserve, consume, release)
-│       └── RuleEngine.php                # Rule validation engine
+│       ├── CouponService.php
+│       └── RuleEngine.php
 │
 ├── database/
 │   ├── migrations/
-│   │   ├── create_coupons_table.php
-│   │   ├── create_coupon_events_table.php
-│   │   └── create_jobs_table.php
-│   │
 │   └── seeders/
-│       └── CouponSeeder.php              # Optional test coupons
 │
 ├── routes/
-│   ├── api.php                           # Coupon endpoints
+│   ├── api.php
 │   └── console.php
 │
 ├── config/
 │   └── queue.php
 │
-├── storage/
-│   └── logs/
-│       └── laravel.log
-│
-├── .env
-├── composer.json
 └── README.md
-
-
-app/
-   └── Http/
-           └── Controllers/
-                          └── Controller.php
-                          └── CouponController.php/
-   └── Jobs/
-           └── ApplyCouponJob.php
-           └── LogEventJob.php
-           └── UpdateCartJob.php
-      
-   └── Services/
-               └── CouponService.php
-               └── RuleEngine.php
-
-database/
-       └── migrations/
-                     └── create_coupons_table.php
-                     └── create_coupons_event_table.php
-                     └── add_isactive_column_to_coupons_table.php
 
 ---
 
