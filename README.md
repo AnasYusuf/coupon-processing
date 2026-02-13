@@ -53,12 +53,12 @@ Designed for reliability, scalability, and auditability, this project demonstrat
 ## 🧩 Project Structure
 
 coupon-processing/
-│
+
 ├── app/
-│   ├── Console/
-│   │   ├── Commands/
-│   │   │   └── TestCouponFlow.php        # End-to-end automated test command
-│   │   └── Kernel.php                    # Registers Artisan commands
+        ├── Console/
+        ├── Commands/
+                    └── TestCouponFlow.php        # End-to-end automated test command
+        └── Kernel.php                    # Registers Artisan commands
 │   │
 │   ├── Http/
 │   │   └── Controllers/
