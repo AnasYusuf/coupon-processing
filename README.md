@@ -7,8 +7,8 @@ Designed for reliability, scalability, and auditability, this project demonstrat
 
 ## 🛠 Tech Stack
 
-- **Backend:** Laravel 10 (PHP 8+)  
-- **Queue & Jobs:** Laravel Jobs, Queues, optional Horizon  
+- **Backend:** Laravel 12.5 (PHP 8.2.1)  
+- **Queue & Jobs:** Laravel Jobs, Queues, Horizon (configuration only)  
 - **Caching & Reservations:** Redis  
 - **Database:** MySQL  
 - **Event Tracking:** Coupon lifecycle events logged in `coupon_events` table  
