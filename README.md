@@ -105,7 +105,7 @@ coupon-processing/
 
 ---
 
-### Example Request: Apply Coupon
+### Apply a Coupon
 
 ```json
 POST /api/apply-coupon
@@ -113,18 +113,69 @@ POST /api/apply-coupon
   "user_id": 1,
   "coupon_code": "WELCOME10",
   "cart": {
-    "total": 150,
+    "total": 100,
     "items": [
-      {"id":103,"name":"Shoes","price":150,"quantity":1}
+      {"id":101,"name":"T-shirt","price":50,"quantity":1,"category":"clothing"},
+      {"id":102,"name":"Jeans","price":50,"quantity":1,"category":"clothing"}
     ]
   }
+}
+```
+### Response 
+{
+  "message": "Coupon verification in progress"
+}
+
+### Coupon_events table
+event_type -> reserved
+rule_version -> v1
+cart_context -> {"total":100,"items":[{"id":101,"name":"T-shirt","price":50,"quantity":1,"category":"clothing"},{"id":102,"name":"Jeans","price":50,"quantity":1,"category":"clothing"}],"user_order_count":0}
+
+---
+
+### CheckOut Success (coupon consumed)
+
+```json
+POST /api/checkout-success
+{
+  "user_id": 2,
+  "coupon_code": "WELCOME10",
+  "cart": {"total":150,"items":[{"id":103,"name":"Shoes","price":150,"quantity":1}]}
 }
 ```
 
 ### Response 
 {
-  "message": "Coupon verification in progress"
+  "message": "Coupon consumed"
 }
+
+### Coupon_events table
+event_type -> conusmed
+rule_version -> v1
+
+---
+
+### CheckOut Failure (coupon released)
+
+```json
+POST /api/checkout-fail
+{
+  "user_id": 2,
+  "coupon_code": "WELCOME10",
+  "cart": {"total":150,"items":[{"id":103,"name":"Shoes","price":150,"quantity":1}]}
+}
+```
+
+### Response 
+{
+  "message": "Coupon released"
+}
+
+### Coupon_events table
+event_type -> released
+rule_version -> v1
+
+---
 
 ## 🔧 Testing Flow (End-to-End)
 
@@ -134,15 +185,15 @@ php artisan serve
 ### 2. Start queue worker:
 php artisan queue:work --queue=high,default,low
 
-### 3. Apply a coupon via /api/apply-coupon.
-
-### 4. Check coupon_events → reserved event created.
+### 3. Apply a coupon via /api/apply-coupon
+ - Check coupon_events → reserved event created.
 
 ### 5. Consume coupon via /api/consume-coupon.
-
-### 6. Check coupon_events → consumed event created; reservation removed from Redis.
+ - Check coupon_events → consumed event created; reservation removed from Redis.
 
 ### 7. Release coupon via /api/release-coupon for failed or expired cases.
+
+### 8. For end-to-end in one go, run the command 'TestCouponFlow.php'.
 
 ### All lifecycle events, cart context, and rule version are logged for audit.
 
