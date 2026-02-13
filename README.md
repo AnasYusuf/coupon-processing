@@ -50,8 +50,9 @@ Designed for reliability, scalability, and auditability, this project demonstrat
 
 ---
 
-## 🧩 Project Structure
+## 📂 Project Structure
 
+```text
 coupon-processing/
 │
 ├── app/
@@ -90,6 +91,7 @@ coupon-processing/
 │   └── queue.php
 │
 └── README.md
+```
 
 ---
 
