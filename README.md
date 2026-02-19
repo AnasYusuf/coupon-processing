@@ -50,6 +50,12 @@ Designed for reliability, scalability, and auditability, this project demonstrat
 
 ---
 
+## 🖼 System Architecture
+
+<img width="1536" height="1024" alt="flow diagram" src="https://github.com/user-attachments/assets/de51645c-0d99-4f9b-9b6d-f90156f10057" />
+
+---
+
 ## 📂 Project Structure
 
 ```text
@@ -127,10 +133,11 @@ POST /api/apply-coupon
 }
 
 ### Coupon_events table
+```text
 event_type -> reserved
 rule_version -> v1
 cart_context -> {"total":100,"items":[{"id":101,"name":"T-shirt","price":50,"quantity":1,"category":"clothing"},{"id":102,"name":"Jeans","price":50,"quantity":1,"category":"clothing"}],"user_order_count":0}
-
+```
 ---
 
 ### CheckOut Success (coupon consumed)
@@ -150,9 +157,10 @@ POST /api/checkout-success
 }
 
 ### Coupon_events table
+```text
 event_type -> conusmed
 rule_version -> v1
-
+```
 ---
 
 ### CheckOut Failure (coupon released)
@@ -172,9 +180,10 @@ POST /api/checkout-fail
 }
 
 ### Coupon_events table
+```text
 event_type -> released
 rule_version -> v1
-
+```
 ---
 
 ## 🔧 Testing Flow (End-to-End)
