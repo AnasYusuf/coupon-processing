@@ -73,9 +73,9 @@ class CouponService
                 'coupon_code' => $couponCode,
                 'reserved_at' => now()->timestamp
             ]),
-            'NX',
             'EX',
-            $this->reservationTTL
+            $this->reservationTTL,
+            'NX'
         );
 
         if (!$reserved) {
